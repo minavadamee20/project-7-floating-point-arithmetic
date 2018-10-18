@@ -5,7 +5,7 @@
 #include <iomanip>
 float  drinks, sandwichAmount, drinkPrice, sandwichPrice, totalAmount, smultiplier = 2.25, wmultipler = 1.75, jmultiplier = 2.80, smallmultiplier = 3.45, bigmultiplier = 5.25;
 char drinktype_;
-float size_;
+int size_;
 int loopcounter, numCustomers;
 void numberofCustomers() {
 	std::cout << "Enter the number of customers: ";
@@ -87,18 +87,19 @@ void prob3() {
 		fstp drinkPrice;
 		Jmp sandwichStart;
 	sandwichStart:
+		
 		call sAmount;
 		call sandwichSize;
 		cmp size_, 10;
-		Jge size10;
-		Jmp size12;
-	size10:
+		Je sizesmall;
+		Jmp sizebig;
+	sizesmall:
 		fld sandwichAmount;
 		fld smallmultiplier;
 		fmul;
 		fstp sandwichPrice;
 		Jmp calculate;
-	size12:
+	sizebig:
 		fld sandwichAmount;
 		fld bigmultiplier;
 		fstp sandwichPrice;
