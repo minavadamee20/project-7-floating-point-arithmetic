@@ -100,7 +100,7 @@ void prob3() {
 		fstp sandwichPrice;
 		Jmp calculate;
 	sizebig:
-		fld sandwichAmount;
+		fld sandwichAmount;  
 		fld bigmultiplier;
 		fstp sandwichPrice;
 		Jmp calculate;
