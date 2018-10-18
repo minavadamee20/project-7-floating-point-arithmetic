@@ -3,7 +3,7 @@
 #define prob3_h
 #include <iostream>
 #include <iomanip>
-float  drinks, sandwichAmount, multiplier, drinkPrice, sandwichPrice, totalAmount;
+float  drinks, sandwichAmount, drinkPrice, sandwichPrice, totalAmount, smultiplier = 2.25, wmultipler = 1.75, jmultiplier = 2.80, smallmultiplier = 3.45, bigmultiplier = 5.25;
 char drinktype_;
 float size_;
 int loopcounter, numCustomers;
@@ -54,8 +54,9 @@ void prob3() {
 		call prompt3;
 		
 		mov loopcounter, 0;
-		mov eax, numCustomers;
+		
 	loop1:
+		mov eax, numCustomers;
 		cmp loopcounter, eax;
 		Je finished;
 		call getDrinks;
@@ -67,23 +68,21 @@ void prob3() {
 		cmp drinktype_, 'J';
 		Je juice;
 	soda:
-		mov multiplier, 2.25;
 		fld drinks;
-		fld multiplier;
+		fld smultiplier;
 		fmul;
 		fstp drinkPrice;
 		Jmp sandwichStart;
 	water:
-		mov multiplier, 1.75;
 		fld drinks;
-		fld multiplier;
+		fld wmultipler;
 		fmul;
 		fstp drinkPrice;
 		Jmp sandwichStart;
 	juice:
-		mov multiplier, 2.80;
+		
 		fld drinks;
-		fld multiplier;
+		fld jmultiplier;
 		fmul;
 		fstp drinkPrice;
 		Jmp sandwichStart;
@@ -91,19 +90,17 @@ void prob3() {
 		call sAmount;
 		call sandwichSize;
 		cmp size_, 10;
-		Je size10;
+		Jge size10;
 		Jmp size12;
 	size10:
-		mov multiplier, 3.45;
 		fld sandwichAmount;
-		fld multiplier;
+		fld smallmultiplier;
 		fmul;
 		fstp sandwichPrice;
 		Jmp calculate;
 	size12:
-		mov multiplier, 5.25;
 		fld sandwichAmount;
-		fld multiplier;
+		fld bigmultiplier;
 		fstp sandwichPrice;
 		Jmp calculate;
 	calculate:
